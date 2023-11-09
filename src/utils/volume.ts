@@ -1,8 +1,9 @@
 import bigNumber from 'bignumber.js'
 
-
-
-const CONVERSION_RATES = {
+/**
+ * Mapping of supported volume units of measure to their conversion rates
+ */
+const CONVERSION_RATES: ConversionRates  = {
   'liters-gallons': 0.26417,
   'gallons-liters': 3.78541,
   'liters-tablespoons': 67.628,
@@ -47,8 +48,10 @@ export function convertVolume(inputValue: number, fromUnit: VolumeUnitOfMeasureT
   return Math.round(result * 100000) / 100000;
 }
 
-export type VolumeUnitOfMeasure = 'liters' | 'gallons' | 'tablespoons' | 'cubic-inches' | 'cubic-feet' | 'cups'
-export type UnSupportedVolumeUnitOfMeasure = 'milliliters' | 'pints' | 'quarts' | 'cubic-centimeters' | 'cubic-meters' | 'cubic-yards';
-export type InvalidTypes = 'invalid input' | 'dog' | '';
-export type VolumeUnitOfMeasureType = VolumeUnitOfMeasure | UnSupportedVolumeUnitOfMeasure | InvalidTypes;
-export type PositiveNumberOnly = number | InvalidTypes;
+type VolumeUnitOfMeasure = 'liters' | 'gallons' | 'tablespoons' | 'cubic-inches' | 'cubic-feet' | 'cups'
+type UnSupportedVolumeUnitOfMeasure = 'milliliters' | 'pints' | 'quarts' | 'cubic-centimeters' | 'cubic-meters' | 'cubic-yards';
+type InvalidTypes = 'invalid input' | 'dog' | '';
+type VolumeUnitOfMeasureType = VolumeUnitOfMeasure | UnSupportedVolumeUnitOfMeasure | InvalidTypes;
+type ConversionRates = {
+  [key: string]: number;
+};
