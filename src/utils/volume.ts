@@ -5,29 +5,43 @@
  * @param toUnit converted unit of measure
  * @returns value converted to the target unit of measure
  */
+import bigNumber from 'bignumber.js'
 
-export function convertVolume(inputValue: number, fromUnit: string, toUnit: string) {
-  switch(`${fromUnit}-${toUnit}`) {
-    case 'liters-gallons':
-      return inputValue * 0.26417;
-    case 'gallons-liters':
-      return inputValue * 3.78541;
-    case 'liters-tablespoons':
-      return inputValue * 67.628;
-    case 'tablespoons-liters':
-      return inputValue * 0.01479;
-    case 'cubic-inches-cubic-feet':
-      return inputValue * 0.00058;
-    case 'cubic-feet-cubic-inches':
-      return inputValue * 1728;
-    case 'cups-liters':
-      const rounded = Math.round((inputValue * 0.236588) * 100000) / 100000;
-      return rounded;
-    case 'cubic-feet-liters':
-      return inputValue * 28.3168;
-    case 'tablespoons-gallons':
-      return inputValue * 0.00390625;
-    default:
-      return NaN;
+
+const CONVERSION_RATES = {
+  'liters-gallons': 0.26417,
+  'gallons-liters': 3.78541,
+  'liters-tablespoons': 67.628,
+  'tablespoons-liters': 0.01479,
+  'cubic-inches-cubic-feet': 0.00058,
+  'cubic-feet-cubic-inches': 1728,
+  'cups-liters': 0.236588,
+  'cubic-feet-liters': 28.3168,
+  'tablespoons-gallons': 0.00390625,
+  'gallons-tablespoons': 256,
+};
+
+export function convertVolume(inputValue: number, fromUnit: string, toUnit: string): string | number {
+  if (inputValue < 0) {
+    return 'invalid input';
   }
+
+  if (fromUnit === toUnit) {
+    return inputValue;
+  }
+
+  if (inputValue > 1e20) {
+    const bigInputValue = new bigNumber(inputValue);
+    const conversionRate = CONVERSION_RATES[`${fromUnit}-${toUnit}`];
+    const bigResult = bigInputValue.times(conversionRate);
+    return bigResult.toString();
+  }
+
+  const conversionRate = CONVERSION_RATES[`${fromUnit}-${toUnit}`];
+  if (conversionRate === undefined) {
+    return 'invalid input';
+  }
+
+  const result = inputValue * conversionRate;
+  return Math.round(result * 100000) / 100000;
 }
