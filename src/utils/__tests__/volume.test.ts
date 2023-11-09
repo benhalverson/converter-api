@@ -51,30 +51,6 @@ describe('convertVolume', () => {
     expect(convertVolume(0.0353147, 'cubic-feet', 'liters')).toBeCloseTo(1);
   });
 
-  // write tests for these cases
-//   0,Celsius,Fahrenheit,32,
-
-// 0,Celsius,Kelvin,273.15,
-// 0,Celsius,Rankine,491.67,
-// 32,Fahrenheit,Celsius,0,
-// 32,Fahrenheit,Kelvin,273.15,
-// 32,Fahrenheit,Rankine,491.67,
-// 273.15,Kelvin,Celsius,0,
-// 273.15,Kelvin,Fahrenheit,32,
-// 273.15,Kelvin,Rankine,491.67,
-// 491.67,Rankine,Celsius,0,
-// 491.67,Rankine,Fahrenheit,32,
-// 491.67,Rankine,Kelvin,273.15,
-// 1,liters,tablespoons,67.628,
-// 1,liters,cubic-inches,61.0237,
-// 1,liters,cups,4.16667,
-// 1,liters,cubic-feet,0.0353147,
-// 1,liters,gallons,0.264172,
-// 67.628,tablespoons,liters,1,
-// 67.628,tablespoons,cubic-inches,72.3434,
-// 67.628,tablespoons,cups,4.73598,
-// 67.628,tablespoons,cubic-feet,0.0472458,
-// 67.628,tablespoons,gallons,0.0178606,
 it('should convert tablespoons to gallons', () => {
   expect(convertVolume(67.628, 'tablespoons', 'gallons')).toBeCloseTo(0.0178606);
   expect(convertVolume(1, 'tablespoons', 'gallons')).toBeCloseTo(0.0001479);
