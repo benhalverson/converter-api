@@ -1,11 +1,5 @@
-/**
- * Utilty functon to covert volume from one unit to another
- * @param inputValue numerical value
- * @param fromUnit starting unit of measure
- * @param toUnit converted unit of measure
- * @returns value converted to the target unit of measure
- */
 import bigNumber from 'bignumber.js'
+
 
 
 const CONVERSION_RATES = {
@@ -21,7 +15,14 @@ const CONVERSION_RATES = {
   'gallons-tablespoons': 256,
 };
 
-export function convertVolume(inputValue: number, fromUnit: string, toUnit: string): string | number {
+/**
+ * Utilty functon to covert volume from one unit to another
+ * @param inputValue numerical value
+ * @param fromUnit starting unit of measure
+ * @param toUnit converted unit of measure
+ * @returns value converted to the target unit of measure
+ */
+export function convertVolume(inputValue: number, fromUnit: VolumeUnitOfMeasureType, toUnit: VolumeUnitOfMeasureType): string | number {
   if (inputValue < 0) {
     return 'invalid input';
   }
@@ -45,3 +46,9 @@ export function convertVolume(inputValue: number, fromUnit: string, toUnit: stri
   const result = inputValue * conversionRate;
   return Math.round(result * 100000) / 100000;
 }
+
+export type VolumeUnitOfMeasure = 'liters' | 'gallons' | 'tablespoons' | 'cubic-inches' | 'cubic-feet' | 'cups'
+export type UnSupportedVolumeUnitOfMeasure = 'milliliters' | 'pints' | 'quarts' | 'cubic-centimeters' | 'cubic-meters' | 'cubic-yards';
+export type InvalidTypes = 'invalid input' | 'dog' | '';
+export type VolumeUnitOfMeasureType = VolumeUnitOfMeasure | UnSupportedVolumeUnitOfMeasure | InvalidTypes;
+export type PositiveNumberOnly = number | InvalidTypes;
