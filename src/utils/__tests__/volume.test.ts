@@ -2,6 +2,9 @@ import {convertVolume} from '../volume';
 
 describe('convertVolume', () => {
 
+  it('the function should be defined', () => {
+    expect(convertVolume).toBeDefined();
+  });
   it('should convert liters to gallons', () => {
     expect(convertVolume(1, 'liters', 'gallons')).toBe(0.26417);
     expect(convertVolume(2, 'liters', 'gallons')).toBe(0.52834);
@@ -15,15 +18,15 @@ describe('convertVolume', () => {
 
 
   it('should convert liters to tablespoons', () => {
-    expect(convertVolume(1, 'liters', 'tablespoons')).toBe(67.628);
-    expect(convertVolume(2, 'liters', 'tablespoons')).toBe(135.256);
-    expect(convertVolume(3, 'liters', 'tablespoons')).toBe(202.884);
+    expect(convertVolume(1, 'liters', 'tablespoons')).toBeCloseTo(67.628);
+    expect(convertVolume(2, 'liters', 'tablespoons')).toBeCloseTo(135.256);
+    expect(convertVolume(3, 'liters', 'tablespoons')).toBeCloseTo(202.884);
   });
 
   it('should convert tablespoons to liters', () => {
-    expect(convertVolume(1, 'tablespoons', 'liters')).toBe(0.01479);
-    expect(convertVolume(2, 'tablespoons', 'liters')).toBe(0.02957);
-    expect(convertVolume(3, 'tablespoons', 'liters')).toBe(0.04436);
+    expect(convertVolume(1, 'tablespoons', 'liters')).toBeCloseTo(0.01479);
+    expect(convertVolume(2, 'tablespoons', 'liters')).toBeCloseTo(0.02957);
+    expect(convertVolume(3, 'tablespoons', 'liters')).toBeCloseTo(0.04436);
   });
 
   it('should convert cubic-inches to cubic-feet', () => {
