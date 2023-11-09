@@ -1,4 +1,4 @@
-import { convertTemperature } from './tempature';
+import { convertTemperature } from '../tempature';
 
 describe('convertTemperature', () => {
   it('should convert fahrenheit to celsius', () => {
