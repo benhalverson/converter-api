@@ -6,6 +6,7 @@ import fs from "fs";
 import csv from "csv-parser";
 import multer from "multer";
 import { convertTemperature } from './utils/tempature';
+import { convertVolume } from './utils/volume';
 
 const app = express();
 const upload = multer({ dest: 'uploads/' }); // Define the destination directory for uploaded files.
@@ -50,14 +51,15 @@ app.post('/temp', upload.single('csvFile'), (req, res) => {
       const expectedOutput = row['Output'].trim().toLowerCase();
 
       // compare the student response with the expected output
-      const isCorrect = convertTemperature(inputNumbericalValue, inputUnitOfMeasure, targetUnitOfMeasure) === studentResponse;
-      const correctValue = convertTemperature(inputNumbericalValue, inputUnitOfMeasure, targetUnitOfMeasure);
+      const tempIsCorrect = convertTemperature(inputNumbericalValue, inputUnitOfMeasure, targetUnitOfMeasure) === studentResponse;
+      const volumeIsCorrect = convertVolume(inputNumbericalValue, inputUnitOfMeasure, targetUnitOfMeasure) === studentResponse;
 
-      console.log('calculated Value', correctValue, 'student response: ', studentResponse)
-      // update the csv output row with correct or incorrect
-      const output = isCorrect ? 'Correct' : 'Incorrect';
+      const output = tempIsCorrect || volumeIsCorrect ? 'correct' : 'incorrect';
 
-      // add the response to the response array
+      const actualTemp = convertTemperature(inputNumbericalValue, inputUnitOfMeasure, targetUnitOfMeasure);
+      const actualVolume = convertVolume(inputNumbericalValue, inputUnitOfMeasure, targetUnitOfMeasure);
+      console.log('actualTemp', actualTemp, 'actualVolume', actualVolume);
+      console.log('studentResponse', studentResponse, 'expectedOutput', expectedOutput);
       responseArray.push(output);
 
     })
