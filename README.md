@@ -61,4 +61,5 @@ The response will be an array of strings that say if the row had the correct con
 - Cache the results of the conversion so that the same file doesn't have to be converted twice.
 - Setup IaaS to deploy the app to the cloud.
 - Return an array of objects instead of an array of strings with the submitted data and the result of the conversion.
+- Protect the endpoints with an API Key.
 
