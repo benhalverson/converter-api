@@ -12,6 +12,7 @@ const CONVERSION_RATES: ConversionRates = {
 	"tablespoons-liters": 0.01479,
 	"cubic-inches-cubic-feet": 0.00058,
 	"cubic-feet-cubic-inches": 1728,
+	"cubic-inches-liters": 0.0163871,
 	"cups-liters": 0.236588,
 	"cubic-feet-liters": 28.3168,
 	"tablespoons-gallons": 0.00390625,
@@ -37,7 +38,7 @@ export function convertVolume(inputValue: number, fromUnit: VolumeUnitOfMeasureT
 	if (inputValue > 1e20 && inputValue !== undefined) {
 		const bigInputValue = new bigNumber(inputValue);
 		const conversionRate = CONVERSION_RATES[`${fromUnit}-${toUnit}`];
-		const bigResult = bigInputValue.times(conversionRate);
+		const bigResult = bigInputValue.times(conversionRate as number);
 		return bigResult.toString();
 	}
 
