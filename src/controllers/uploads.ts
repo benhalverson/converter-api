@@ -4,7 +4,6 @@ import csv from "csv-parser";
 import { convertTemperature } from "../utils/tempature";
 import { convertVolume } from "../utils/volume";
 
-// eslint-disable-next-line 
 export const uploads = (req: Request, res: Response) => {
 	// Check if the file was successfully uploaded by multer.
 	if (!req?.file) {
