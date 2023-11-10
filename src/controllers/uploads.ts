@@ -66,6 +66,6 @@ export const uploads = (req: Request, res: Response) => {
 				res.json(responseArrayWithQuestionNumber);
 			});
 	} catch (error) {
-    console.log(error);
-  }
+		console.log(error);
+	}
 };
