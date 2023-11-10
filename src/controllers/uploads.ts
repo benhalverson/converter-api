@@ -7,7 +7,7 @@ import { convertVolume } from "../utils/volume";
 export const uploads = (req: Request, res: Response) => {
 	// Check if the file was successfully uploaded by multer.
 	if (!req?.file) {
-		return res.json({
+		return res.status(400).json({
 			status: "error",
 			message: "No file uploaded",
 		});
@@ -65,6 +65,9 @@ export const uploads = (req: Request, res: Response) => {
 				res.json(responseArrayWithQuestionNumber);
 			});
 	} catch (error) {
-		console.log(error);
+		res.status(500).json({
+			status: "error",
+			message: "Something went wrong",
+		}); 
 	}
 };

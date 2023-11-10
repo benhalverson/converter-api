@@ -1,35 +1,30 @@
 import request from "supertest";
-import app from "../../../src/index";
-// import fs from "fs";
+import app from "../../../src/app";
 
-describe.skip("POST /uploads", () => {
-	let csvContent: Buffer;
-  
-	// beforeAll(() => {
-	// 	// read the sample CSV file
-
-	// 	csvContent = fs.readFileSync("../../../sample-data.csv");
-	// });
+describe("POST /upload", () => {
 	it("should return an array of responses", async () => {
+		const csvData = `Input value,Unit of Measure,Target Unit of Measure,Student Response,Output
+1,liters,tablespoons,67.628,
+1,liters,cubic-inches,61.0237,`;
+
 		const response = await request(app)
 			.post("/upload")
-			.attach("file", csvContent, "sample-data.csv");
+			.attach("csvFile", Buffer.from(csvData), "test.csv");
 
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual(
-			// Replace with the expected response
 			[
 				"Question 1: correct",
 				"Question 2: incorrect",
-				// Add more expected responses here
 			]
 		);
+		expect(response.body.length).toBe(2);
 	});
 
 	it("should handle no file uploaded", async () => {
 		const response = await request(app).post("/upload").attach("file", "", "");
 
-		expect(response.status).toBe(200); // Update with the actual status code your code returns
+		expect(response.status).toBe(400);
 		expect(response.body).toEqual({
 			status: "error",
 			message: "No file uploaded",
@@ -39,7 +34,23 @@ describe.skip("POST /uploads", () => {
 	it("should test the /health endpoint", async () => {
 		const response = await request(app).get("/health");
 		expect(response.status).toBe(200);
-		expect(response.body).toEqual({status: "ok"});
+		expect(response.body).toEqual({ status: "ok" });
 	});
-	// Add more test cases as needed
+
+	it("should return a 404 for an unknown route", async () => {
+		const response = await request(app).get("/unknown");
+		expect(response.status).toBe(404);
+	});
+
+	it.skip("should return a 500 for an unknown error", async () => {
+		const csvData = `Input value,Unit of Measure,Target Unit of Measure,Student Response,Output
+		1,dog,cat,67.628,
+		`;
+		const response = await request(app).post("/upload").attach("csvFilee", Buffer.from(csvData), "test.csv");
+		expect(response.status).toBe(500);
+		expect(response.body.error).toEqual({
+			status: "error",
+			message: "Something went wrong",
+		});
+	});
 });
