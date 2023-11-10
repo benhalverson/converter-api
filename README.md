@@ -36,6 +36,14 @@ The response will be an array of strings that say if the row had the correct con
 ]
 
 ```
+
+# Deployed demo
+```bash
+- GET https://converter-app-qj48.onrender.com/health
+- GET https://converter-app-qj48.onrender.com/list
+- POST https://converter-app-qj48.onrender.com/upload
+```
+
 # Improvements
 
 - Add more endpoints to get the data in different formats.
