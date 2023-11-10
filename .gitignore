@@ -2,3 +2,4 @@
 /uploads/*
 /coverage/*
 /dist/**
+/src/**/*.js
