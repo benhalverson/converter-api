@@ -1,5 +1,7 @@
 # Install
 
+You can install the app locally or by using docker compose to run it in a container.
+
 ```bash
 git clone https://github.com/benhalverson/converter-api-api
 ```
@@ -15,6 +17,13 @@ npm install
 ```bash 
 ```
 
+## Docker
+    
+Make sure you have docker installed on your machine.
+
+ ```bash
+  docker compose up
+ ```
 
 # Usage
 
