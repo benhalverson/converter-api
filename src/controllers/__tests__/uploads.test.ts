@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../../../src/app";
-import { sampleCSVInput, sampleResponseData } from "../../utils/__tests__/data";
+import { sampleCSVInput, sampleResponseData } from "../../utils/data";
 
 describe("POST /upload", () => {
 	it("should return an array of responses", async () => {
