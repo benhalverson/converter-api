@@ -50,14 +50,14 @@ export const uploads = (req: Request, res: Response) => {
 				);
 
 				responseArray.push({
-					"Question Number": responseArray.length + 1,
-					"Actual Value": actualTemp 
+					"questionNumber": responseArray.length + 1,
+					"actualValue": actualTemp 
 						? actualTemp
 						: volumeIsCorrect
 							? actualVolume
 							: actualVolume,
-					"Student Response": studentResponse,
-					"Correct?": output,
+					"studentResponse": studentResponse,
+					"output": output,
 				});
 			})
 			.on("end", () => {
@@ -73,8 +73,8 @@ export const uploads = (req: Request, res: Response) => {
 
 
 type ResponseObj = {
-	"Question Number": number;
-	"Actual Value": number | string;
-	"Student Response": number;
-	"Correct?": string;
+	"questionNumber": number;
+	"actualValue": number | string;
+	"studentResponse": number;
+	"output": string;
 }

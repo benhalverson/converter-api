@@ -1,45 +1,45 @@
-export const sampleResponseData = 	[
+export const sampleResponseData = [
 	{
-		"Question Number": 1,
-		"Actual Value": 67.628,
-		"Student Response": 67.628,
-		"Correct?": "correct"
+		"questionNumber": 1,
+		"actualValue": 67.628,
+		"studentResponse": 67.628,
+		"output": "correct"
 	},
 	{
-		"Question Number": 2,
-		"Actual Value": 61.0237,
-		"Student Response": 61.0237,
-		"Correct?": "correct"
+		"questionNumber": 2,
+		"actualValue": 61.0237,
+		"studentResponse": 61.0237,
+		"output": "correct"
 	},
 	{
-		"Question Number": 3,
-		"Actual Value": "invalid input",
-		"Student Response": 0,
-		"Correct?": "correct"
+		"questionNumber": 3,
+		"actualValue": "invalid input",
+		"studentResponse": 0,
+		"output": "correct"
 	},
 	{
-		"Question Number": 4,
-		"Actual Value": 273.15,
-		"Student Response": 273.15,
-		"Correct?": "correct"
+		"questionNumber": 4,
+		"actualValue": 273.15,
+		"studentResponse": 273.15,
+		"output": "correct"
 	},
 	{
-		"Question Number": 5,
-		"Actual Value": 491.67,
-		"Student Response": 491.67,
-		"Correct?": "correct"
+		"questionNumber": 5,
+		"actualValue": 491.67,
+		"studentResponse": 491.67,
+		"output": "correct"
 	},
 	{
-		"Question Number": 6,
-		"Actual Value": "invalid input",
-		"Student Response": 0,
-		"Correct?": "correct"
+		"questionNumber": 6,
+		"actualValue": "invalid input",
+		"studentResponse": 0,
+		"output": "correct"
 	},
 	{
-		"Question Number": 7,
-		"Actual Value": -459.67,
-		"Student Response": -459.67,
-		"Correct?": "correct"
+		"questionNumber": 7,
+		"actualValue": -459.67,
+		"studentResponse": -459.67,
+		"output": "correct"
 	}
 ];
 
