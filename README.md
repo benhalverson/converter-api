@@ -14,9 +14,6 @@ cd converter-api-api
 npm install
 ```
 
-```bash 
-```
-
 ## Docker
     
 Make sure you have docker installed on your machine.
@@ -33,7 +30,7 @@ Make sure you have docker installed on your machine.
 
 # Result
 
-The response will be an array of strings that say if the row had the correct conversion or not.
+The response will be an array of objects with the following format.
 
 
 ```json
