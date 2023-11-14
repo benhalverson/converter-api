@@ -7,6 +7,6 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-      - ./upload:/app/upload
+      - ./uploads:/app/uploads
     restart: always
     
