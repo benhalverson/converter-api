@@ -7,6 +7,9 @@ const CONVERSION_RATES: ConversionRates = {
 	"milliliters-liters": 0.001,
 	"liters-milliliters": 1000,
 	"liters-gallons": 0.26417,
+	"liters-cubic-inches": 61.0237,
+	"liters-cubic-feet": 0.0353147,
+	"liters-cups": 4.22675,
 	"gallons-liters": 3.78541,
 	"liters-tablespoons": 67.628,
 	"tablespoons-liters": 0.01479,
@@ -16,6 +19,9 @@ const CONVERSION_RATES: ConversionRates = {
 	"cups-liters": 0.236588,
 	"cubic-feet-liters": 28.3168,
 	"tablespoons-gallons": 0.00390625,
+	"tablespoons-liter": 0.0147868,
+	"tablespons-cubic-inches": 1.10823,
+	"tablespoons-cubic-feet": 0.00052219,
 	"gallons-tablespoons": 256,
 };
 

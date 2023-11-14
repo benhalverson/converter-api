@@ -16,15 +16,14 @@ export const uploads = (req: Request, res: Response) => {
 	// Read the uploaded CSV file.
 	const csvFile = req.file?.path;
 
-	// Initialize an array to store the response for each row.
-	const responseArray: string[] = [];
+	const responseArray: ResponseObj[] = [];
 
 	// Read and process the CSV file.
 	try {
 		createReadStream(csvFile)
 			.pipe(csv())
 			.on("data", (row) => {
-				const inputNumbericalValue = parseFloat(row["Input value"]);
+				const inputNumbericalValue = parseInt(row["Input value"]);
 				const inputUnitOfMeasure = row["Unit of Measure"].trim().toLowerCase();
 				const targetUnitOfMeasure = row["Target Unit of Measure"]
 					.trim()
@@ -51,18 +50,20 @@ export const uploads = (req: Request, res: Response) => {
 					inputUnitOfMeasure,
 					targetUnitOfMeasure
 				);
-				console.log("actualTemp", actualTemp, "actualVolume", actualVolume);
 
-				responseArray.push(output);
+				responseArray.push({
+					"Question Number": responseArray.length + 1,
+					"Actual Value": actualTemp 
+						? actualTemp
+						: volumeIsCorrect
+							? actualVolume
+							: actualVolume,
+					"Student Response": studentResponse,
+					"Correct?": output,
+				});
 			})
 			.on("end", () => {
-				const responseArrayWithQuestionNumber = responseArray.map(
-					(response, index) => {
-						return `Question ${index + 1}: ${response}`;
-					}
-				);
-
-				res.json(responseArrayWithQuestionNumber);
+				res.json(responseArray);	
 			});
 	} catch (error) {
 		res.status(500).json({
@@ -71,3 +72,11 @@ export const uploads = (req: Request, res: Response) => {
 		}); 
 	}
 };
+
+
+type ResponseObj = {
+	"Question Number": number;
+	"Actual Value": number | string;
+	"Student Response": number;
+	"Correct?": string;
+}

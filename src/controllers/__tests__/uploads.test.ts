@@ -1,17 +1,10 @@
 import request from "supertest";
 import app from "../../../src/app";
+import { sampleCSVInput, sampleResponseData } from "../../utils/__tests__/data";
 
 describe("POST /upload", () => {
 	it("should return an array of responses", async () => {
-		const csvData = `Input value,Unit of Measure,Target Unit of Measure,Student Response,Output
-1,liters,tablespoons,67.628,
-1,liters,cubic-inches,61.0237,
-32,fahrenheit,celsius,0,
-32,fahrenheit,kelvin,273.15,
-32,fahrenheit,rankine,491.67,
-0,rankine,kelvin,0,
-0,rankine,fahrenheit,-459.67,
-`;
+		const csvData = sampleCSVInput;
 
 		const response = await request(app)
 			.post("/upload")
@@ -19,15 +12,7 @@ describe("POST /upload", () => {
 
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual(
-			[
-				"Question 1: correct",
-				"Question 2: incorrect",
-				"Question 3: correct",
-				"Question 4: correct",
-				"Question 5: correct",
-				"Question 6: correct",
-				"Question 7: correct"
-			]
+			sampleResponseData
 		);
 		expect(response.body.length).toBe(7);
 	});
