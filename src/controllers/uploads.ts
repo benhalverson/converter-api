@@ -24,10 +24,8 @@ export const uploads = (req: Request, res: Response) => {
 			.pipe(csv())
 			.on("data", (row) => {
 				const inputNumbericalValue = parseInt(row["Input value"]);
-				const inputUnitOfMeasure = row["Unit of Measure"].trim().toLowerCase();
-				const targetUnitOfMeasure = row["Target Unit of Measure"]
-					.trim()
-					.toLowerCase();
+				const inputUnitOfMeasure = row["Unit of Measure"];
+				const targetUnitOfMeasure = row["Target Unit of Measure"];
 				const studentResponse = parseFloat(row["Student Response"]);
 				// const expectedOutput = row["Output"].trim().toLowerCase();
 
