@@ -14,6 +14,21 @@ app.use(morgan("dev"));
 app.use(cors({ origin: "*" }));
 app.use(helmet());
 
+app.get("/", (_req: Request, res: Response) => {
+	res.json({
+		validEndpoints: [
+			{
+				endpoint: "/upload",
+				http: "POST",
+			},
+			{
+				endpoint: "/health",
+				http: "GET",
+			},
+		]
+	});
+});
+
 app.get("/health", (_req: Request, res: Response) => {
 	res.json({
 		status: "ok",
@@ -21,6 +36,13 @@ app.get("/health", (_req: Request, res: Response) => {
 });
 
 app.post("/upload", upload.single("csvFile"), uploads);
+
+app.get("/upload", (_req: Request, res: Response) => {
+	res.json({
+		error: "Please use a POST method to upload a file",
+	});
+});
+
 app.get("/list", list);
 
 export default app;
